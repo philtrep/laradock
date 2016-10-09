@@ -924,6 +924,11 @@ To controll the behavior of xDebug (in the `php-fpm` Container), you can run the
 
 If you plan to run LaraDock in production, we recommend creating your own `production.yml` file with the services you want to run.
 
+You'll then run the newly created `production.yml` file using
+```
+docker-compose -f production.yml up -d
+```
+
 [Our examples](https://github.com/LaraDock/laradock/blob/master/_config-examples/) should help you get started.
 
 Learn more about creating [environment specific Docker Compose files](https://docs.docker.com/compose/production/).
