@@ -58,10 +58,10 @@ It's like Laravel Homestead but for Docker instead of Vagrant.
 		- [Install xDebug](#Install-xDebug)
 		    - [Start/Stop xDebug](#Controll-xDebug)
 	- [Production](#Production)
+		- [Running LaraDock in Production](#Running-LaraDock-in-Production)
 		- [Setup Laravel and Docker on Digital Ocean](#Digital-Ocean)
 	- [Misc](#Misc)
 		- [Cron jobs](#CronJobs)
-		- [MySQL access from host](#MySQL-access-from-host)
 		- [Use custom Domain](#Use-custom-Domain)
 		- [Enable Global Composer Build Install](#Enable-Global-Composer-Build-Install)
 		- [Install Prestissimo](#Install-Prestissimo)
@@ -919,8 +919,14 @@ To controll the behavior of xDebug (in the `php-fpm` Container), you can run the
 <br>
 <a name="Production"></a>
 
+<a name="Running-LaraDock-in-Production"></a>
+### Running LaraDock in Production
 
+If you plan to run LaraDock in production, we recommend creating your own `production.yml` file with the services you want to run.
 
+[Our examples](https://github.com/LaraDock/laradock/blob/master/_config-examples/) should help you get started.
+
+Learn more about creating [environment specific Docker Compose files](https://docs.docker.com/compose/production/).
 
 <br>
 <a name="Digital-Ocean"></a>
@@ -951,17 +957,6 @@ You can add your cron jobs to `workspace/crontab/root` after the `php artisan` l
 * * * * * root echo "Every Minute" > /var/log/cron.log 2>&1
 ```
 
-<a name="MySQL-access-from-host"></a>
-### MySQL access from host
-
-You can forward the MySQL/MariaDB port to your host by adding the lines
-```
-ports:
-    - "3306:3306"
-```
-To the `mysql` or `mariadb` section of the LaraDock `docker-compose.yml` or in your [environment specific Compose](https://docs.docker.com/compose/extends/) file.
-
-The MySQL port is not forwarded by default because Docker will automatically publish the port on the host, which is quite insecure, unless specifically told not to. To learn more about how Docker publishes ports, please read [this excellent post on the subject](https://fralef.me/docker-and-iptables.html).
 
 <a name="Use-custom-Domain"></a>
 ### Use custom Domain (instead of the Docker IP)
